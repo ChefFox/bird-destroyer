@@ -1,6 +1,6 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(assets.image`barf`, ship, 0, -140)
-    projectile.startEffect(effects.coolRadial, 100)
+    barf = sprites.createProjectileFromSprite(assets.image`barf`, bird, 0, -140)
+    barf.startEffect(effects.coolRadial, 100)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.destroy()
@@ -13,9 +13,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     sprite.startEffect(effects.fire, 200)
     info.changeLifeBy(-1)
 })
-let projectile: Sprite = null
-let ship: Sprite = null
-let asteroids = [
+let barf: Sprite = null
+let bird: Sprite = null
+let meds = [
 sprites.skillmap.potion0,
 sprites.skillmap.potion1,
 sprites.skillmap.potion2,
@@ -23,14 +23,14 @@ sprites.skillmap.potion3,
 sprites.skillmap.potion4,
 sprites.skillmap.potion13
 ]
-ship = sprites.create(sprites.skillmap.pigeonIcon, SpriteKind.Player)
-ship.setStayInScreen(true)
-ship.bottom = 120
-controller.moveSprite(ship, 100, 100)
+bird = sprites.create(sprites.skillmap.pigeonIcon, SpriteKind.Player)
+bird.setStayInScreen(true)
+bird.bottom = 120
+controller.moveSprite(bird, 100, 100)
 info.setLife(3)
 effects.clouds.startScreenEffect()
 game.onUpdateInterval(500, function () {
-    projectile = sprites.createProjectileFromSide(asteroids[randint(0, asteroids.length - 1)], 0, 75)
-    projectile.setKind(SpriteKind.Enemy)
-    projectile.x = randint(10, 150)
+    barf = sprites.createProjectileFromSide(meds[randint(0, meds.length - 1)], 0, 75)
+    barf.setKind(SpriteKind.Enemy)
+    barf.x = randint(10, 150)
 })
